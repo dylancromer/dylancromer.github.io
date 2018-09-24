@@ -1,0 +1,17 @@
+.inline-svg {
+	text-decoration: none;
+	display: inline-block;
+	height: 2.25rem;
+	width: 2.25rem;
+	top: 0.15rem;
+	position: relative;
+}
+
+a.noul {
+	text-decoration: none;
+	border: none;
+	padding-right: 16px;
+}
+
+div.icons {
+}
