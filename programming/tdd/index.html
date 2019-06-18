@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Dylan Cromer&#39;s academic webspace">
+<title>
+Test-Driven Development for Scientific Programming, Part 1: Introduction - Dylan Cromer
+</title>
+
+
+
+
+<link rel="shortcut icon" href="/sam.ico">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/" integrity="" crossorigin="anonymous" media="screen">
+
+
+
+ 
+
+<link rel="stylesheet" href="/fonts/didact_gothic/Didact_Gothic.css">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Test-Driven Development for Scientific Programming, Part 1: Introduction"/>
+<meta name="twitter:description" content="Test-driven development (TDD) is a way of writing code via creating tests, and using the tests to do design on your system. My best summary in a sentence is that TDD exists to focus the difficulty of designing programs into smaller, controllable pieces, in the form of tests.
+If you&rsquo;re looking for a more solid definition of TDD, I invite you to watch this video of Gary Bernhardt explaining it very succinctly."/>
+
+<meta property="og:title" content="Test-Driven Development for Scientific Programming, Part 1: Introduction" />
+<meta property="og:description" content="Test-driven development (TDD) is a way of writing code via creating tests, and using the tests to do design on your system. My best summary in a sentence is that TDD exists to focus the difficulty of designing programs into smaller, controllable pieces, in the form of tests.
+If you&rsquo;re looking for a more solid definition of TDD, I invite you to watch this video of Gary Bernhardt explaining it very succinctly." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//dylancromer.com/programming/tdd/" />
+<meta property="article:published_time" content="2019-06-12T21:59:08-04:00"/>
+<meta property="article:modified_time" content="2019-06-12T21:59:08-04:00"/>
+
+
+    
+
+    
+    
+    
+    <title>
+        
+        Test-Driven Development for Scientific Programming, Part 1: Introduction
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">Test-Driven Development for Scientific Programming, Part 1: Introduction</div>
+
+        <div class="section" id="content"><p>Test-driven development (TDD) is a way of writing code via creating tests, and using the tests to do design on your system. My best summary in a sentence is that TDD exists to focus the difficulty of designing programs into smaller, controllable pieces, in the form of tests.</p>
+
+<p>If you&rsquo;re looking for a more solid definition of TDD, I invite you to watch <a href="https://youtu.be/tdNnN5yTIeM">this video of Gary Bernhardt explaining it</a> very succinctly. The essence of his definition is:
+- you write a failing test
+- write the minimal amount of code to cause the test to pass
+- refactor (restructure the code for optimization, style, or design purposes)</p>
+
+<p>Gary Bernhardt uses an example of a small piece of a webapp to illustrate this process, but it looks very little like anything we&rsquo;d see in most scientific applications. So I&rsquo;d like to demonstrate briefly what this would look like if you are trying to write a numerical program using Python.</p>
+
+<p>Let&rsquo;s say we want to write a function in Python that adds an arbitrary number of numpy arrays together. The first thing we need to do is write a test file that looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="n">test_array_add</span><span class="p">()</span></code></pre></div>
+<p>Let&rsquo;s break this test down a bit: we define a function that calls the function we want to build, <code>arr_add</code>, by feeding it two test arrays that look like</p>
+
+<pre><code>[1,1,1,1,1]
+[2,2,2,2,2]
+</code></pre>
+
+<p>and asserts we get the output</p>
+
+<pre><code>[3,3,3,3,3]
+</code></pre>
+
+<p>The first thing we get when we run this test is the error</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;test.py&quot;, line 10, in &lt;module&gt;
+    test_array_add()
+  File &quot;test.py&quot;, line 8, in test_array_add
+    assert arr_add(arr_1, arr_2) == 3*np.ones(5)
+NameError: name 'arr_add' is not defined
+
+shell returned 1
+</code></pre>
+
+<p>This is because there <em>is no function</em> called <code>arr_add</code> yet; as Gary Bernhardt says, we are &ldquo;programming by wishful thinking&rdquo;. That is, we are just writing a test for the code as we want it to exist: I <em>want</em> a function called <code>arr_add</code> that takes in the arrays it operates on as arguments, and returns the proper sum. So now we just <code>cause</code> the function to exist, and write the function in our test file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">arr_add</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="n">test_array_add</span><span class="p">()</span></code></pre></div>
+<p>Here we&rsquo;ve just added an empty function definition that doesn&rsquo;t do anything (the <code>pass</code> statement in Python is basically syntax for no-op). If we run it now we get</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;test.py&quot;, line 14, in &lt;module&gt;
+    test_array_add()
+  File &quot;test.py&quot;, line 12, in test_array_add
+    assert arr_add(arr_1, arr_2) == 3*np.ones(5)
+TypeError: arr_add() takes 0 positional arguments but 2 were given
+
+shell returned 1
+</code></pre>
+
+<p>So now we&rsquo;re on to another error message. Here we get another trivial problem with our function, it needs to be able to take arguments. That&rsquo;s alright, we can fix that too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="n">test_array_add</span><span class="p">()</span></code></pre></div>
+<p>Running it now gives</p>
+
+<pre><code>Press ENTER or type command to continue
+Traceback (most recent call last):
+  File &quot;test.py&quot;, line 14, in &lt;module&gt;
+    test_array_add()
+  File &quot;test.py&quot;, line 12, in test_array_add
+    assert arr_add(arr_1, arr_2) == 3*np.ones(5)
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+shell returned 1
+</code></pre>
+
+<p>This time the error might be less obvious if you aren&rsquo;t used to making assertions about numpy arrays, but the problem here is that <code>==</code> doesn&rsquo;t work on numpy arrays by itself, instead we have to specify whether we want to evaluate if <em>any</em> of the elements of the two arrays are the same, or if <em>all</em> are the same. We want all (it would be very sad to let our test pass if it only manages to get some of the values right), so we just need to use the <code>numpy.all</code> function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+<span class="n">test_array_add</span><span class="p">()</span></code></pre></div>
+<p>This returns our first <code>AssertionError</code> message:</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;test.py&quot;, line 14, in &lt;module&gt;
+    test_array_add()
+  File &quot;test.py&quot;, line 12, in test_array_add
+    assert np.all(arr_add(arr_1, arr_2) == 3*np.ones(5))
+    AssertionError
+</code></pre>
+
+<p>What has happened is that our empty function is returning <code>None</code>, a constant in Python which is returned by default when a function has no explicit return statement, which our <code>arr_add</code> function does not.</p>
+
+<p>Now we get to a kind of weird part of TDD. We are supposed to write the simplest code we possibly can to fix the error message, and technically we can just make our function return an array of 3s, like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span></code></pre></div>
+<p>This is obviously kind of a stupid thing to do, since it obviously won&rsquo;t work for anything but our particular test case, but it will make the test pass. Running the code now returns nothing, since the assertion is now true. Why do this? In practice the main reason I would ever hard-code my new program to pass a test like this is to delay having to think about a general implementation. The way we get to the general implementation is to write another test:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add_two_inputs</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add_many_inputs</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">,</span> <span class="n">arr_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+<span class="n">test_array_add_two_inputs</span><span class="p">()</span>
+<span class="n">test_array_add_many_inputs</span><span class="p">()</span></code></pre></div>
+<p>What we&rsquo;ve done here is to change the name of our first test a bit, specifying it tests for two input arrays, and then add a new test which tests the function for 3 arrays. Now if we run it we get</p>
+
+<pre><code>Press ENTER or type command to continue
+Traceback (most recent call last):
+  File &quot;test.py&quot;, line 24, in &lt;module&gt;
+    test_array_add_many_inputs()
+  File &quot;test.py&quot;, line 20, in test_array_add_many_inputs
+    assert np.all(arr_add(arr_1, arr_2, arr_3) == 6*np.ones(5))
+TypeError: arr_add() takes 2 positional arguments but 3 were given
+
+shell returned 1
+</code></pre>
+
+<p>Now the first test passes but our second test fails, telling us <code>arr_add</code> doesn&rsquo;t even allow 3 arguments! Now we are forced to generalize in two ways: first, we need to allow 3 arguments, but also not require 3 arguments, as the first test will fail if we do. In general, we&rsquo;d like to be able to pass <code>arr_add</code> any number of arrays. One way we can do this (and the standard way in Python) is to use a starred expression. If we write a function like this:</p>
+
+<pre><code>def func(*args):
+    do_stuff_with_args
+</code></pre>
+
+<p><code>func</code> now has in its context a tuple of arguments called <code>args</code>. We can access these arguments inside <code>func</code> via <code>args[0]</code>, <code>args[1]</code>, etc. So we want to change <code>arr_add</code> to be</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="o">*</span><span class="n">arrs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">something</span></code></pre></div>
+<p>Now we can generalize further by adding the arrays correctly. We could do this with a loop, but looping over numpy arrays is almost never a good idea for performance reasons, so we will instead try this: convert the tuple of arrays to a numpy array via <code>np.asarray(arrs)</code>, then we will use the <code>sum</code> method on this array, over axis 0. If you aren&rsquo;t familiar with numpy arrays, when we create an array of the 1-dimensional arrays we have passed into <code>add_arr</code>, we get something like this:</p>
+
+<pre><code>[[1,1,1,1,1],
+ [2,2,2,2,2],
+ [3,3,3,3,3]]
+</code></pre>
+
+<p>You can think of this like a matrix or like a nested list. <code>axis 0</code> refers to either the columns (viewing it as a matrix) or the first layer of nesting (viewing as a nested list). What we want is to sum the individual nested arrays together, i.e.</p>
+
+<pre><code>[1,1,1,1,1] + [2,2,2,2,2] + [3,3,3,3,3]
+</code></pre>
+
+<p>which is exactly the same as summing along the columns. So this is why we specify the sum to be along <code>axis=0</code>. Now our final code looks like</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="o">*</span><span class="n">arrs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arrs</span><span class="p">)</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add_two_inputs</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">test_array_add_many_inputs</span><span class="p">():</span>
+    <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">arr_3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">,</span> <span class="n">arr_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+<span class="n">test_array_add_two_inputs</span><span class="p">()</span>
+<span class="n">test_array_add_many_inputs</span><span class="p">()</span></code></pre></div>
+<p>and both tests now pass.</p>
+
+<p>A few key points to note:</p>
+
+<ul>
+<li>The function we created here is not a realistic example of research code by any means. It is a toy example to see the process of TDD in a relatively short presentation.</li>
+<li>We chose to hard code the correct value to make our first test pass, instead of just writing the general code first. Why?</li>
+</ul>
+
+<p>The reason we performed this ridiculous maneuver is to help us focus on writing the tests, and sketching out the design for the function, before worrying about the general algorithm. This is one of the reasons TDD can be a powerful tool; the process lets you design a system by how you will use it, then error-by-error, bring that system into existence, while you focus on just fixing the error message as simply as possible. You let your tests design the system, then finally, once the tests force you to do so, you write the general algorithm or method into the code.</p>
+
+<p>This is a very coarse overview of TDD, one which is well supplemented by the talk I linked to above by Gary Bernhardt. In fact, if you are interested in learning more about TDD and other software engineering practices, Gary Bernhardt&rsquo;s screencasts at <a href="https://destroyallsoftware.com">Destroy All Software</a> are a great resource. He goes into many concrete and less trivial examples, and discusses more subtle decisions you have to make when writing real code. All of what I know about TDD comes from Destroy All Software, and my own experience using TDD for scientific code. The screencasts do cost money, but for students and people in other situations where they might be unable to afford the cost, he offers <a href="https://www.destroyallsoftware.com/postcard">a way to get access for free</a>.</p>
+
+<p>In <a href="../tdd2">part 2</a>, I will write down some recommendations for how to write more complex tests in Python, and some software to help make running tests easier.</p>
+
+<p><link rel="stylesheet" href="/css/base16_ocean_dark.css"></p>
+</div>
+
+        
+        <div class="section bottom-menu">
+<hr />
+<p>
+
+
+    
+
+    
+        
+            <a href="/about">
+                About me
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/pdfs/cv.pdf">
+                CV
+            </a>
+        
+            &#183; 
+            <a href="/research">
+                Research
+            </a>
+        
+            &#183; 
+            <a href="/gallery">
+                Photography
+            </a>
+        
+            &#183; 
+            <a href="/programming">
+                Programming
+            </a>
+        
+    
+    &#183; 
+    <a href="//dylancromer.com/">
+        main
+    </a>
+
+</p></div>
+        
+
+        <div class="section footer">Dylan Cromer</div>
+    </div>
+</body>
+
+
+
+</html>
