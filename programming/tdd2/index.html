@@ -48,8 +48,8 @@ Test-Driven Development for Scientific Programming, Part 2: Getting Started with
 <meta property="og:description" content="More Realistic Testing Scenarios In the last part I outlined a brief description of TDD using the example of writing a function in Python that adds numpy arrays together. Of course in actual research, the problem you are trying to solve with code is usually a lot more complicated than just adding a few arrays. Usually you have a more complex calculation consisting of many steps, which might be performed on data in a processing pipeline." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="//dylancromer.com/programming/tdd2/" />
-<meta property="article:published_time" content="2019-06-15T19:48:45-04:00"/>
-<meta property="article:modified_time" content="2019-06-15T19:48:45-04:00"/>
+<meta property="article:published_time" content="2019-06-15T19:48:45-04:00" />
+<meta property="article:modified_time" content="2019-06-15T19:48:45-04:00" />
 
 
     
@@ -136,7 +136,7 @@ shell returned 1
         
             <span class="n">ys</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 
-            <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">ys</span> <span class="o">==</span> <span class="n">xs</span><span class="p">)</span></code></pre></div>
+            <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">ys</span> <span class="o">==</span> <span class="n">xs</span><span class="p">)</span></code></pre></div>
 <p>Here we&rsquo;ve nested the test function under two &ldquo;describe&rdquo; functions. Notice that we also don&rsquo;t need to have the word &ldquo;test&rdquo; in our functions for pytest to work. All that pytest-describe is doing here is to allow pytest to recurse through these nested describe-functions, find the actual test functions, and run them.</p>
 
 <p>So what does this actually output?</p>

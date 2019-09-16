@@ -46,8 +46,8 @@ If you&rsquo;re looking for a more solid definition of TDD, I invite you to watc
 If you&rsquo;re looking for a more solid definition of TDD, I invite you to watch this video of Gary Bernhardt explaining it very succinctly." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="//dylancromer.com/programming/tdd/" />
-<meta property="article:published_time" content="2019-06-12T21:59:08-04:00"/>
-<meta property="article:modified_time" content="2019-06-12T21:59:08-04:00"/>
+<meta property="article:published_time" content="2019-06-12T21:59:08-04:00" />
+<meta property="article:modified_time" content="2019-06-12T21:59:08-04:00" />
 
 
     
@@ -179,7 +179,7 @@ shell returned 1
     <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 
 <span class="n">test_array_add</span><span class="p">()</span></code></pre></div>
@@ -210,7 +210,7 @@ shell returned 1
     <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">test_array_add_many_inputs</span><span class="p">():</span>
@@ -218,7 +218,7 @@ shell returned 1
     <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">arr_3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">,</span> <span class="n">arr_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">,</span> <span class="n">arr_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 
 <span class="n">test_array_add_two_inputs</span><span class="p">()</span>
@@ -262,14 +262,14 @@ shell returned 1
 
 
 <span class="k">def</span> <span class="nf">arr_add</span><span class="p">(</span><span class="o">*</span><span class="n">arrs</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arrs</span><span class="p">)</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arrs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">test_array_add_two_inputs</span><span class="p">():</span>
     <span class="n">arr_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">test_array_add_many_inputs</span><span class="p">():</span>
@@ -277,7 +277,7 @@ shell returned 1
     <span class="n">arr_2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">arr_3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="nb">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">,</span> <span class="n">arr_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">arr_add</span><span class="p">(</span><span class="n">arr_1</span><span class="p">,</span> <span class="n">arr_2</span><span class="p">,</span> <span class="n">arr_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 
 <span class="n">test_array_add_two_inputs</span><span class="p">()</span>
