@@ -1,51 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>//dylancromer.com/</loc>
     <lastmod>2019-06-15T19:48:45-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>//dylancromer.com/programming/tdd2/</loc>
     <lastmod>2019-06-15T19:48:45-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>//dylancromer.com/programming/</loc>
     <lastmod>2019-06-12T22:08:14-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>//dylancromer.com/programming/tdd/</loc>
     <lastmod>2019-06-12T21:59:08-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//dylancromer.com/talks/</loc>
-    <lastmod>2019-03-28T23:08:25-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//dylancromer.com/research/</loc>
-    <lastmod>2018-09-23T22:11:22-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>//dylancromer.com/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>//dylancromer.com/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>//dylancromer.com/gallery/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>//dylancromer.com/tags/</loc>
   </url>
-  
 </urlset>

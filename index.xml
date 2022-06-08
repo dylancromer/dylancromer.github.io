@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dylan Cromer</title>
@@ -6,18 +6,14 @@
     <description>Recent content on Dylan Cromer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Jun 2019 19:48:45 -0400</lastBuildDate>
-    
-	<atom:link href="//dylancromer.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 15 Jun 2019 19:48:45 -0400</lastBuildDate><atom:link href="//dylancromer.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test-Driven Development for Scientific Programming, Part 2: Getting Started with Python</title>
       <link>//dylancromer.com/programming/tdd2/</link>
       <pubDate>Sat, 15 Jun 2019 19:48:45 -0400</pubDate>
       
       <guid>//dylancromer.com/programming/tdd2/</guid>
-      <description>More Realistic Testing Scenarios In the last part I outlined a brief description of TDD using the example of writing a function in Python that adds numpy arrays together. Of course in actual research, the problem you are trying to solve with code is usually a lot more complicated than just adding a few arrays. Usually you have a more complex calculation consisting of many steps, which might be performed on data in a processing pipeline.</description>
+      <description>More Realistic Testing Scenarios&amp;nbsp;¶ In the last part I outlined a brief description of TDD using the example of writing a function in Python that adds numpy arrays together. Of course in actual research, the problem you are trying to solve with code is usually a lot more complicated than just adding a few arrays. Usually you have a more complex calculation consisting of many steps, which might be performed on data in a processing pipeline.</description>
     </item>
     
     <item>
@@ -36,8 +32,7 @@ If you&amp;rsquo;re looking for a more solid definition of TDD, I invite you to 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//dylancromer.com/about/</guid>
-      <description>My name is Dylan Cromer. I&amp;rsquo;m a third-year graduate student in the astronomy department at Cornell University. Right now I work on using galaxy clusters to understand fundamental cosmology and physics. I am advised by Nick Battaglia.
-I received my undergraduate degree in physics and mathematics from the University of North Carolina at Asheville, where I worked with Professors Brian Dennison on the origin of fast radio bursts, and James Perkins on surface-enhanced Raman spectroscopy from silver lithographic nanoparticles.</description>
+      <description>I am Dylan Cromer. I was a cosmologist with extensive experience studying galaxy cluster masses, using a variety of statistical and computational techniques. After that, I started to focus on a personal research project about structural problems in academia that lead to abuse, poor mental health of grad students, and other problems. My goal is to eventually publish this research. I am currently looking for work; if you are interesting in hiring me for a job in data science or another field that you feel I would be suited for, please contact me at dylan@dylancromer.</description>
     </item>
     
   </channel>
