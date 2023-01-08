@@ -32,7 +32,7 @@ If you&amp;rsquo;re looking for a more solid definition of TDD, I invite you to 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//dylancromer.com/about/</guid>
-      <description>I am Dylan Cromer. I was a cosmologist with extensive experience studying galaxy cluster masses, using a variety of statistical and computational techniques. After that, I started to focus on a personal research project about structural problems in academia that lead to abuse, poor mental health of grad students, and other problems. My goal is to eventually publish this research. I am currently looking for work; if you are interesting in hiring me for a job in data science or another field that you feel I would be suited for, please contact me at dylan@dylancromer.</description>
+      <description>I am Dylan Cromer. I am a data scientist with training in cosmology, mathematics, and physics. I have experience analysing, visualizing, and modeling many different types of data. I am especially interested in the process of machine-learning model selection, testing and validation (both of software and models), and data science product QA and Product Management. I enjoy the practice of test-driven development in software, and I like to extend the logic of TDD to other domains.</description>
     </item>
     
   </channel>
